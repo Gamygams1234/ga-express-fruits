@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fruits Index</title>
+
+    <style>
+      li{
+        display: flex;
+        margin-bottom: .5rem;
+        & a{
+          margin-right: 1rem;
+        }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h1>Fruits Index Page</h1>
+    <ul>
+      <% for (let i = 0; i < allFruits.length; i++) { %>
+      <li>
+        <a href="/fruits/<%=i%>">
+          <%=allFruits[i].name%>
+        </a>
+        <form action="/fruits/<%=i %> ?_method=DELETE" method="POST">
+          <input type="submit" value = "DELETE">
+        </form>
+      </li>
+      <% } %>
+    </ul>
+
+    <nav>
+      <a href="/fruits/new">Create a New Fruit</a>
+
+      
+    </nav>
+  </body>
+</html>
