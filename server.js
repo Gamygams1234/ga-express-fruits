@@ -37,12 +37,36 @@ app.delete("/fruits/:index", (req, res)=>{
     
 })
 
+// edit
+app.get("/fruits/:indexOfFruitsArray/edit", (req, res)=>{
+    let fruit=  fruits[req.params.indexOfFruitsArray]
+    
+    res.render("edit.ejs", {
+        fruit:fruit,
+        index : req.params.indexOfFruitsArray
+    })
+})
+app.put("/fruits/:indexOfFruitsArray", (req,res)=>{
+    if(req.body.readyToEat === "true"){
+        req.body.readyToEat = true;
+    }else{
+        req.body.readyToEat = false;
+    }
+    fruits[parseInt(req.params.indexOfFruitsArray)] =  req.body;
+    
+    res.render('index.ejs', {
+        allFruits: fruits
+    })
+
+})
+
 // SHOW ROUTE
 app.get("/fruits/:indexOfFruitsArray", (req, res)=>{
     // res.send(fruits[req.params.indexOfFruitsArray]);
     res.render('show.ejs', {
         fruit: fruits[req.params.indexOfFruitsArray]
     })
+    
 })
 
 app.post("/fruits", (req, res)=>{
